@@ -12,6 +12,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 const schema = yup.object().shape({
   stripeId: yup.string().trim().required("stripeId  is required"),
   packagename: yup.string().trim().required("Package name is required"),
+  duration: yup.string().trim().required("Plan Duration is required"),
   price: yup.number().required("price in USD is required"),
   inr: yup.number().required("price in INR required"),
   course: yup.string().trim().required("courses is required"),
@@ -102,7 +103,24 @@ const AddPackage = () => {
               className="col-span-2 text-black rounded-md py-1.5 px-2"
               required
             />
-            <p className="text-red-700">{errors.packagename?.message}</p>
+            <p className="text-red-700">{errors.packagename?.message}</p>{" "}
+            <label className="text-lg col-span-12">
+              Plan Duration <span className="text-red-600">*</span>
+            </label>
+            <select
+              {...register("duration")}
+              className="col-span-2 text-black rounded-md py-1.5 px-2"
+              required
+            >
+              <option value="" disabled selected>
+                Select Plan Duration
+              </option>
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+              <option value="halfYearly">Half-Yearly</option>
+              <option value="annual">Annual</option>
+            </select>
+            <p className="text-red-700">{errors.duration?.message}</p>{" "}
             <label className="text-lg col-span-12">
               Price In USD <span className=" text-red-600">*</span>
             </label>
@@ -123,7 +141,7 @@ const AddPackage = () => {
             />
             <p className="text-red-700">{errors.inr?.message}</p>
             <label className="text-lg col-span-12">
-              No of Courses per month <span className=" text-red-600">*</span>
+              No of Courses <span className=" text-red-600">*</span>
             </label>
             <input
               {...register("course")}
@@ -158,16 +176,15 @@ const AddPackage = () => {
               </div>
             </div>
             <label className="text-lg col-span-12">
-              stripeId <span className=" text-red-600">*</span>
+              Stripe ID <span className="text-red-600">*</span>
             </label>
             <input
               {...register("stripeId")}
-              placeholder="Enter stripeId"
+              placeholder="Enter Stripe ID"
               className="col-span-2 text-black rounded-md py-1.5 px-2"
-              required
+              defaultValue="N/A" // <-- sets default if no input is provided
             />
             <p className="text-red-700">{errors.stripeId?.message}</p>
-
             <label className="text-lg col-span-12">
               No of Subtopic <span className=" text-red-600">*</span>
             </label>

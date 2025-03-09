@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { AiOutlineLoading } from "react-icons/ai";
 const schema = yup.object().shape({
   packagename: yup.string().trim().required("Package name is required"),
+  duration: yup.string().trim().required("Plan Duration is required"),
   price: yup.number().required("price In USD is required"),
   inr: yup.number().required("price In INR required"),
   course: yup.string().trim().required("courses is required"),
@@ -64,6 +65,7 @@ const EditPackage = () => {
       setPackages(responseData);
       const plan = response.data.plan;
       setValue("packagename", plan.packagename);
+      setValue("duration", plan.duration);
       setValue("price", plan.price);
       setValue("inr", plan.inr);
       setValue("course", plan.course);
@@ -130,6 +132,23 @@ const EditPackage = () => {
               className="col-span-2 text-black rounded-md py-1.5 px-2"
               required
             />
+            <label className="text-lg col-span-12">
+              Plan Duration <span className="text-red-600">*</span>
+            </label>
+            <select
+              {...register("duration")}
+              className="col-span-2 text-black rounded-md py-1.5 px-2"
+              required
+            >
+              <option value="" disabled selected>
+                Select Plan Duration
+              </option>
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+              <option value="halfYearly">Half-Yearly</option>
+              <option value="annual">Annual</option>
+            </select>
+            <p className="text-red-700">{errors.duration?.message}</p>{" "}
             <p className="text-red-700">{errors.packagename?.message}</p>
             <label className="text-lg col-span-12">
               Price In USD <span className=" text-red-600">*</span>
@@ -160,7 +179,7 @@ const EditPackage = () => {
               className="col-span-2 text-black rounded-md py-1.5 px-2"
               required
             />
-            <p className="text-red-700">{errors.courses?.message}</p>
+            <p className="text-red-700">{errors.course?.message}</p>
             <label className="text-lg col-span-12">
               Tax <span className=" text-red-600">*</span>
             </label>
@@ -185,7 +204,15 @@ const EditPackage = () => {
                 <FaCaretDown className="text-black text-2xl" />
               </div>
             </div>
-
+            <label className="text-lg col-span-12">
+              Stripe ID <span className="text-red-600">*</span>
+            </label>
+            <input
+              {...register("stripeId")}
+              placeholder="Enter Stripe ID"
+              className="col-span-2 text-black rounded-md py-1.5 px-2"
+            />
+            <p className="text-red-700">{errors.stripeId?.message}</p>
             <label className="text-lg col-span-12">
               No of Subtopic <span className=" text-red-600">*</span>
             </label>

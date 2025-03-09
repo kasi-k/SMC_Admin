@@ -53,8 +53,8 @@ const Package = ({permissions}) => {
   const handleCopy = (plan) => {
     const packageDetails = `
       Package Name: ${plan.packagename}
-      Price: $${plan.price}/Month
-      Generate course: ${plan.course} ${plan.course === "1" ? "free" : "Courses"}/month
+      Price: $${plan.price}/${plan.duration}
+      Generate course: ${plan.course} ${plan.course === "1" ? "free" : "Courses"}/${plan.duration}
       Subtopics: ${plan.subtopic}
       AI Teacher: Yes
       Theory & Image course
@@ -95,12 +95,12 @@ const Package = ({permissions}) => {
             <div className="col-span-3 bg-[#000928]" key={index}>
               <div className=" grid  justify-center">
                 <p className=" text-center my-4 capitalize">{plan.packagename}</p>
-                <p className=" bg-gradient-to-r from-[#3D03FA] to-[#A71CD2] px-14 py-1.5 ">
-                  $ {plan.price} / Month
+                <p className="capitalize bg-gradient-to-r from-[#3D03FA] to-[#A71CD2] px-14 py-1.5 ">
+                  $ {plan.price} / {plan.duration}
                 </p>
               </div>
               <div className=" text-lg font-extralight mx-4 my-6">
-                <p>Generate {plan.course} {plan.course ==="1"?"free":"Courses"} /month </p>
+                <p className="capitalize text-nowrap">Generate {plan.course} {plan.course ==="1"?"free":"Courses"} /{plan.duration} </p>
                 <p> Up to {plan.subtopic} subtopics </p>
                 <p> AI Teacher</p>
                 <p>Theory & Image course</p>

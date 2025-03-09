@@ -110,7 +110,7 @@ const Login = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="flex justify-end items-center mx-4"
               >
-                <p className="absolute top-60 my-[60px] z-10 ">
+                <p className="absolute top-60 my-[52px] z-10 ">
                   {showPassword ? <IoIosEye /> : <IoIosEyeOff />}
                 </p>
               </div>
